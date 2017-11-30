@@ -134,7 +134,7 @@ public class VideoNoleggio {
 									}
 								}
 							} else {
-								System.out.println("NESSUNA SCELTA SELEZIONATA \n SI PREGA DI SCEGLIERE LA GIUSTA OPZIONE");
+								System.out.println("NESSUNA SCELTA SELEZIONATA \n SI PREGA DI SCEGLIERE LA GIUSTA OPZIONE!!");
 							}
 						
 						/*
