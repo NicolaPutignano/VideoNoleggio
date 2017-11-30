@@ -1,6 +1,7 @@
 package it.javaoggetti.jdbc;
 
 import java.sql.*;
+import java.util.Scanner;
 
 public class VideoNoleggio {
 
@@ -96,14 +97,56 @@ public class VideoNoleggio {
 						
 						// 5. scorrere i risultati
 						
-						while(rs.next()) {
+						Scanner sc = new Scanner (System.in);
+						// TUTTO QUELLO CHE DOBBIAMO FAR FARE AL DB VIENE DOPO   statement s = c.createStatement();
+						
+						System.out.println("\t \t \t \t \t Benvenuti \n" + " \t \t \t \t Video Noleggio GNOGNO!!!  \n \n \n");
+						System.out.println("Selezionare l'opzione desiderata: \n\n" + 
+						"OPZIONE 1" + " - - - " + "Controllare lista film: \n" + 
+						"OPZIONE 2" + " - - - " + "Controllare film noleggiati \n ");
+						
+						int scelta = sc.nextInt();
+						
+						System.out.println(scelta);
+						
+							if (scelta == 1) {
+								ResultSet rs1 = s.executeQuery(
+										"SELECT id, titolo FROM Film;"
+										);
+								while(rs1.next()) {									// fino a quando ho ancora cose da leggere
+												// stampa la riga corrente
+									for(int i = 1; i <= rs1.getMetaData().getColumnCount(); i++) {   // scandiscimi le colonne
+										System.out.println(rs1.getMetaData().getColumnLabel(i)+": "	// stampa il nome della colonna i
+													+rs1.getString(i) + " ");
+									}// stampa il contenuto della cella i
+								}
+							} else if (scelta == 2) {
+								ResultSet rs2 = s.executeQuery(
+										"SELECT id, titolo FROM Film "
+										+ "JOIN Noleggio ON Noleggio.film = Film.id "
+										+ "GROUP BY id, titolo; "
+										);
+								while(rs2.next()) {									// fino a quando ho ancora cose da leggere
+									// stampa la riga corrente
+									for(int i = 1; i <= rs2.getMetaData().getColumnCount(); i++) {   // scandiscimi le colonne
+										System.out.println(rs2.getMetaData().getColumnLabel(i)+": "	// stampa il nome della colonna i
+										+rs2.getString(i) + " ");
+									}
+								}
+							} else {
+								System.out.println("NESSUNA SCELTA SELEZIONATA \n SI PREGA DI SCEGLIERE LA GIUSTA OPZIONE!!");
+							}
+						
+						/*
+						  while(rs.next()) {
+						 
 							System.out.println("Row "+rs.getRow());
 							for(int i = 1; i < rs.getMetaData().getColumnCount()+1; i++) {
 								System.out.println(rs.getMetaData().getColumnLabel(i)+": "	// stampa il nome della colonna i
 											+rs.getString(i));								// stampa il contenuto della cella i
 							}
 						}
-						
+						*/
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
