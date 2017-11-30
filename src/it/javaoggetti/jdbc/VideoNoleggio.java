@@ -16,7 +16,7 @@ public class VideoNoleggio {
 					//    (oggetto Connection)
 					
 					try {
-						Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/video_noleggio","root","1716");
+						Connection c = DriverManager.getConnection("jdbc:mysql://localhost:3306/video_noleggio","root","root");
 
 //						PreparedStatement ps = c.prepareStatement("INSERT INTO genere(tipo) VALUES (?)");
 												
